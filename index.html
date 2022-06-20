@@ -2,28 +2,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<!-- https://www.yt-download.org/download/M-E2D4j5wrk/mp3/320/1637309221/2ebc0172654acb21ab225c42656d1d4b20a62299d90d850b3786db3f121aeaa0/0 -->
+<div>
+  <h3>Input youtube videoId and download</h3>
+  <input type="text" id="videoId" name="video_Id" />
+</div>
 
-
-<div id="youtubeIframe">fdsfsd</div>
+<div id="youtubeIframe"></div>
 
 <script>
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
+  $("#videoId").bind("paste", function(e) {
+      let videoId = e.originalEvent.clipboardData.getData('text');
 
-  window.onload = function() {
-    console.log(urlSearchParams, params);
-
-    $( "#youtubeIframe" )
-        .find('iframe')
-        .remove()
-        .end()
-        .append('<iframe id="iframeId" src="https://www.yt-download.org/api/button/mp3/'+ params.id +'" width="100%" height="100px" scrolling="no" style="border:none;"></iframe>')
-        // .val('whatever')
-    ;
-
-    var iframe = document.getElementById('iframeId');
-    var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
-    console.log(iframe);
-  };
+      $( "#youtubeIframe" )
+          .find('iframe')
+          .remove()
+          .end()
+          .append('<iframe id="iframeId" src="https://convert2mp3s.com/api/button/mp3?url=https://www.youtube.com/watch?v='+ videoId +'" width="100%" height="400px" scrolling="no" style="border:none;"></iframe>');
+  } );
 </script>
